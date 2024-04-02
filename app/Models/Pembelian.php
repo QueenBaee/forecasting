@@ -12,4 +12,5 @@ class Pembelian extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     protected $fillable = ['nama_bahanBaku', 'harga', 'tanggal_beli', 'vendor', 'gambar'];
+    public $timestamps = false;
 }

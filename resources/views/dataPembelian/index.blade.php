@@ -35,7 +35,7 @@
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <div class="card-body">
-                    <a href="/home/bahan/tambah"><button type="button" class="btn btn-primary">Tambah Data pembelian</button></a>
+                    <a href="dataPembelian/create"><button type="button" class="btn btn-primary">Tambah Data pembelian</button></a>
                     <a href="/home/bahan/cetak" target="_blank"><button type="button" class="btn btn-secondary">Cetak Data Pembelian</button></a>
                 <thead>
                 <tr>
@@ -52,16 +52,16 @@
                 @foreach ($bahan as $bhn)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $bhn->nama }}</td>
+                      <td>{{ $bhn->nama_bahanBaku }}</td>
                       <td width="10%">{{ 'Rp. ' .$bhn->harga }}</td>
                       <td>{{ $bhn->tanggal_beli }}</td>
-                      <td>{{ $bhn->Vendor }}</td>
+                      <td>{{ $bhn->vendor }}</td>
                       <td width="25%">
-                        <img src="{{ url('/img_bahan/'.$bhn->gambar) }}" width="40%" alt="">
+                        <img src="{{ url('/img_bukti/'.$bhn->gambar) }}" width="40%" alt="">
                       </td>
                       <td>
-                          <a href="#">Edit</a>
-                          <a href="#">Hapus</a>
+                          <a href="dataPembelian/edit/{{ $bhn->id }}">Edit</a>
+                          <a href="dataPembelian/delete/{{ $bhn->id }}">Hapus</a>
                       </td>
                     </tr>
                 @endforeach

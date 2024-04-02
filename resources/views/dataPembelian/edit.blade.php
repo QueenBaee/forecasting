@@ -30,34 +30,35 @@
               <h5 class="card-title">Tambah Data Bahan</h5>
               
                 <!-- General Form Elements -->
-                <form action="{{ route('dataPembelian-simpan')}}" method="post" enctype="multipart/form-data">
+                <form action="{{  url('dataPembelian/update/'.$bahan->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                {{ method_field('PUT') }}
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Nama Bahan Baku</label>
                   <div class="col-sm-10">
-                    <input type="text" name="nama" id="nama" class="form-control">
+                    <input type="text" name="nama" id="nama" class="form-control"value="{{ $bahan->nama_bahanBaku }}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Harga Bahan</label>
                   <div class="col-sm-10">
-                    <input type="text" name="harga" id="harga" class="form-control">
+                    <input type="text" name="harga" id="harga" class="form-control"value="{{ $bahan->harga }}">>
                   </div>
                 </div>
                 <label for="inputText" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                   <div class="col-sm-10">
-                    <input type="date" name="tanggal_beli" id="tanggal_beli" class="form-control">
+                    <input type="date" name="tanggal_beli" id="tanggal_beli" class="form-control"value="{{ $bahan->tanggal_beli }}">
                   </div>
                 </div>
                 <label for="inputText" class="col-sm-2 col-form-label">Vendor</label>
                   <div class="col-sm-10">
-                    <input type="text" name="vendor" id="vendor" class="form-control">
+                    <input type="text" name="vendor" id="vendor" class="form-control"value="{{ $bahan->vendor }}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputFile" class="col-sm-2 col-form-label">Bukti Pembelian</label>
                   <div class="col-sm-10">
-                    <input type="file" name="gambar" id="gambar" class="form-control">
+                    <input type="file" name="gambar" id="gambar" class="form-control"value="{{ asset('/img_bukti/'.$bahan->gambar) }}">
                   </div>
                 </div>
                 <div class="col-12">
