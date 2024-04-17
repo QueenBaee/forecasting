@@ -11,6 +11,9 @@ use file;
 class PembelianController extends Controller
 {
     //
+    public function dashboard() {
+        return view ('dashboard');
+    }
     public function index(){
         $bahan = Pembelian::get();
         return view ('dataPembelian.index',['bahan'=> $bahan]);

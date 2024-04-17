@@ -3,12 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\bahanBakuController;
+use App\Http\Controllers\LoginController;
 use App\Models\bahanBaku;
 use App\Models\Pembelian;
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin',[LoginController::class, 'actionlogin'])->name('actionlogin');
+
+Route::get('dashboard',[PembelianController::class,'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('actiologout',[LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 Route::get('dataPembelian', [PembelianController::class, 'index']);
 Route::get('dataPembelian/create',[PembelianController::class,'create']);
