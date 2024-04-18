@@ -34,7 +34,13 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Nama Bahan Baku</label>
                   <div class="col-sm-10">
-                    <input type="text" name="nama" id="nama" class="form-control">
+                  <select name="nama" id="nama">
+                      @if($bhn->count())
+                      @foreach($bhn as $item)
+                        <option value="{{$item->nama_bahanBaku}}">{{$item->nama_bahanBaku}}</option>
+                      @endforeach
+                      @endif
+                    </select>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -43,20 +49,10 @@
                     <input type="text" name="harga" id="harga" class="form-control">
                   </div>
                 </div>
+                <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                   <div class="col-sm-10">
-                    <input type="date" name="tanggal_beli" id="tanggal_beli" class="form-control">
-                  </div>
-                </div>
-                <label for="inputText" class="col-sm-2 col-form-label">Vendor</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="vendor" id="vendor" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputFile" class="col-sm-2 col-form-label">Bukti Pembelian</label>
-                  <div class="col-sm-10">
-                    <input type="file" name="gambar" id="gambar" class="form-control">
+                    <input type="month" name="bulan" id="bulan" class="form-control">
                   </div>
                 </div>
                 <div class="col-12">

@@ -36,36 +36,31 @@
               <table class="table datatable">
                 <div class="card-body">
                     <a href="dataPembelian/create"><button type="button" class="btn btn-primary">Tambah Data pembelian</button></a>
-                    <a href="/home/bahan/cetak" target="_blank"><button type="button" class="btn btn-secondary">Cetak Data Pembelian</button></a>
+                    <a href="dataPembelian/export_excel" target="_blank"><button type="button" class="btn btn-secondary">Cetak Data Pembelian</button></a>
+                    
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Harga</th>
-                    <th scope="col">Tanggal Pembelian</th>
-                    <th scope="col">Vendor</th>
-                    <th scope="col">Gambar</th>
+                    <th scope="col">Waktu Pembelian</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach ($bahan as $bhn)
+                @foreach ($beli as $bel)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $bhn->nama_bahanBaku }}</td>
-                      <td width="10%">{{ 'Rp. ' .$bhn->harga }}</td>
-                      <td>{{ $bhn->tanggal_beli }}</td>
-                      <td>{{ $bhn->vendor }}</td>
-                      <td width="25%">
-                        <img src="{{ url('/img_bukti/'.$bhn->gambar) }}" width="40%" alt="">
-                      </td>
+                      <td>{{ $bel->nama_bahanBaku }}</td>
+                      <td width="10%">{{ 'Rp. ' .$bel->harga }}</td>
+                      <td>{{ $bel->Bulan }}</td>
                       <td>
-                          <a href="dataPembelian/edit/{{ $bhn->id }}">Edit</a>
-                          <a href="dataPembelian/delete/{{ $bhn->id }}">Hapus</a>
+                          <a href="dataPembelian/edit/{{ $bel->id }}">Edit</a>
+                          <a href="dataPembelian/delete/{{ $bel->id }}">Hapus</a>
                       </td>
                     </tr>
                 @endforeach
-                </tbody>
+                </tbody>    
               </table>
               <!-- End Table with stripped rows -->
 

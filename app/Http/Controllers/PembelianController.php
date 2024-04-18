@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Exports\PembelianExport;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Pembelian;
+use App\Models\bahanBaku;
 use file;
 
 class PembelianController extends Controller
@@ -15,69 +19,56 @@ class PembelianController extends Controller
         return view ('dashboard');
     }
     public function index(){
-        $bahan = Pembelian::get();
-        return view ('dataPembelian.index',['bahan'=> $bahan]);
+        $beli = Pembelian::get();
+        return view ('dataPembelian.index',['beli'=> $beli]);
     }
 
     public function create (){
-        return view ('dataPembelian.input');
+        $bahan = bahanBaku::get();
+        return view ('dataPembelian.input',['bhn'=>$bahan]);
     }
     
     public function store(Request $request)
     {
+        
         $request->validate([
             'nama' => 'required',
             'harga' => 'required',
-            'tanggal_beli' =>'required',
-            'vendor' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'bulan' =>'required',
         ]);
 
-        $gambar= $request->file('gambar');
-        $nama_gambar = time()."_".$gambar->getClientOriginalName();
-        $simpan_gambar = 'img_bukti';
-        $gambar->move($simpan_gambar,$nama_gambar);
 
         Pembelian::create([
             'nama_bahanBaku' => $request->nama,
             'harga'=> $request->harga,
-            'tanggal_beli'=> $request->tanggal_beli,
-            'vendor' => $request->vendor,
-            'gambar'=> $nama_gambar
+            'bulan'=> $request->bulan,
         ]);
     return redirect ('/dataPembelian');
     }
     public function edit($id){
-        $bahan = Pembelian::all();
-        $bahan = Pembelian::find($id);
-        return view('dataPembelian.edit', compact('bahan'),['bahan'=>$bahan]);
+        $beli = Pembelian::all();
+        $beli = Pembelian::find($id);
+        return view('dataPembelian.edit', compact('bahan'),['bahan'=>$beli]);
     }
     public function update(Request $request, $id){
         $request->validate([
             'nama' => 'required',
             'harga' => 'required',
-            'tanggal_beli' =>'required',
-            'vendor' => 'required',
-            'gambar' => 'file|image|mimes:jpeg,png,jpg:max:2048'
+            'bulan' =>'required',
         ]);
 
-        $bahan = Pembelian::find($id);
-        $bahan -> nama_bahanBaku = $request ->nama_bahanBaku;
-        $bahan -> harga = $request -> harga;
-        $bahan -> tanggal_beli = $request->tanggal_beli;
-        $bahan -> vendor = $request->vendor;
-        if($request->hasFile('gambar')){
-            $gambar = $request->file('gambar');
-            $nama_gambar = time()."_".$gambar->getClientOriginalName();
-            $simpan_gambar = 'img_produk';
-            $gambar->move($simpan_gambar, $nama_gambar); 
-            $gambar = $nama_gambar;
-        }
+        $beli = Pembelian::find($id);
+        $beli -> nama_bahanBaku = $request ->nama_bahanBaku;
+        $beli -> harga = $request -> harga;
+        $beli -> bulan = $request->bulan;
     }
 
     public function destroy($id){
-        $bahan = Pembelian::find($id);
-        $bahan -> delete();
+        $beli = Pembelian::find($id);
+        $beli -> delete();
         return back();
+    }
+    public function export_excel(){
+        return Excel::download(new PembelianExport,'DataPembelian.xlsx');
     }
 }  
