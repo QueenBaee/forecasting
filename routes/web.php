@@ -17,6 +17,7 @@ Route::get('dataPembelian', [PembelianController::class, 'index']);
 Route::get('dataPembelian/create',[PembelianController::class,'create']);
 Route::post('dataPembelian/simpan',[PembelianController::class,'store'])->name('dataPembelian-simpan');
 Route::get('dataPembelian/edit/{id}',[PembelianController::class,'edit']);
+Route::put('dataPembelian/update/{id}',[PembelianController::class,'update'])->name('dataPembelian-update');
 Route::get('dataPembelian/export_excel',[PembelianController::class,'export_excel']);
 Route::get('dataPembelian/delete/{id}',[PembelianController::class,'destroy'])->name('dataPembelian-delete');
 

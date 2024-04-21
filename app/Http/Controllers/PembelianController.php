@@ -10,16 +10,20 @@ use App\Exports\SiswaExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Pembelian;
 use App\Models\bahanBaku;
+use Illuminate\Support\Facades\DB;
 use file;
 
 class PembelianController extends Controller
 {
     //
     public function dashboard() {
-        return view ('dashboard');
+        $bahanbaku = bahanBaku::count();
+        $beli = Pembelian::count();
+        $total = Pembelian::get('harga');
+        return view ('dashboard',['beli'=>$beli], ['bahanBaku'=> $bahanbaku], ['total'=>$total]);
     }
     public function index(){
-        $beli = Pembelian::get();
+        $beli = Pembelian::paginate(20);
         return view ('dataPembelian.index',['beli'=> $beli]);
     }
 
@@ -48,11 +52,13 @@ class PembelianController extends Controller
     public function edit($id){
         $beli = Pembelian::all();
         $beli = Pembelian::find($id);
-        return view('dataPembelian.edit', compact('bahan'),['bahan'=>$beli]);
+        $bahan = bahanBaku::get();
+        return view('dataPembelian.edit', compact('beli'),['bhn'=>$bahan]);
     }
     public function update(Request $request, $id){
+        //dd($request->all());
         $request->validate([
-            'nama' => 'required',
+            'nama_bahanBaku' => 'required',
             'harga' => 'required',
             'bulan' =>'required',
         ]);
@@ -61,6 +67,9 @@ class PembelianController extends Controller
         $beli -> nama_bahanBaku = $request ->nama_bahanBaku;
         $beli -> harga = $request -> harga;
         $beli -> bulan = $request->bulan;
+        //dd($beli);
+        $beli->save();
+        return redirect('/dataPembelian');
     }
 
     public function destroy($id){

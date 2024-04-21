@@ -11,12 +11,12 @@
         
             <!-- Main Content -->
             @include('template.topbar')
-      <h1>Tambah Bahan</h1>
+      <h1>Edit Data Pembelian</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item"><a href="dataPembelian"></a>Data Pembelian</li>
-          <li class="breadcrumb-item active">Tambah Bahan</li>
+          <li class="breadcrumb-item active">Edit Data Pembelian</li>
         </ol>
       </nav>
     
@@ -26,40 +26,37 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tambah Data Bahan</h5>
+              <h5 class="card-title">Edit Data Pembelian</h5>
               
                 <!-- General Form Elements -->
-                <form action="{{  url('dataPembelian/update/'.$bahan->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{  url('dataPembelian/update/'.$beli->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Nama Bahan Baku</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="nama" id="nama" class="form-control"value="{{ $bahan->nama_bahanBaku }}">
-                  </div>
+                  <label class="col-sm-2 col-form-label">Nama Bahan Baku</label>
+                  
+                  <select name="nama_bahanBaku" id="nama_bahanBaku">
+                      @if($bhn->count())
+                      @foreach($bhn as $item)
+                        <option value="{{$item->nama_bahanBaku}}"{{ $item->nama_bahanBaku == $beli->nama_bahanBaku ? 'selected' : '' }}>
+                          {{$item->nama_bahanBaku}}</option>
+                      @endforeach
+                      @endif
+                    </select>
                 </div>
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Harga Bahan</label>
                   <div class="col-sm-10">
-                    <input type="text" name="harga" id="harga" class="form-control"value="{{ $bahan->harga }}">>
-                  </div>
-                </div>
-                <label for="inputText" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
-                  <div class="col-sm-10">
-                    <input type="date" name="tanggal_beli" id="tanggal_beli" class="form-control"value="{{ $bahan->tanggal_beli }}">
-                  </div>
-                </div>
-                <label for="inputText" class="col-sm-2 col-form-label">Vendor</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="vendor" id="vendor" class="form-control"value="{{ $bahan->vendor }}">
+                    <input type="text" name="harga" id="harga" class="form-control"value="{{ $beli->harga }}">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputFile" class="col-sm-2 col-form-label">Bukti Pembelian</label>
+                <label for="inputText" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                   <div class="col-sm-10">
-                    <input type="file" name="gambar" id="gambar" class="form-control"value="{{ asset('/img_bukti/'.$bahan->gambar) }}">
+                    <input type="month" name="bulan" id="bulan" class="form-control"value="{{ $beli->bulan }}">
                   </div>
                 </div>
+                
                 <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Simpan</button>
                 </div>
@@ -71,6 +68,8 @@
         </div>
       </div>
     </section>
+    <div>
+      <div>
             <!-- End of Main Content -->
 
             <!-- Footer -->

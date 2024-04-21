@@ -11,12 +11,12 @@
         
             <!-- Main Content -->
             @include('template.topbar')
-      <h1>Tambah Bahan</h1>
+      <h1>Edit Bahan Baku</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item"><a href="dataPembelian"></a>Data Pembelian</li>
-          <li class="breadcrumb-item active">Tambah Bahan</li>
+          <li class="breadcrumb-item active">Edit Bahan Baku</li>
         </ol>
       </nav>
     

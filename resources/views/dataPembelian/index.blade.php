@@ -62,6 +62,7 @@
                 @endforeach
                 </tbody>    
               </table>
+              {{$beli->links()}}
               <!-- End Table with stripped rows -->
 
             </div>
