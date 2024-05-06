@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\bahanBakuController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Controller;
 use App\Models\bahanBaku;
 use App\Models\Pembelian;
 
-Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::get('/',[LoginController::class,'index']);
+
+Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin',[LoginController::class, 'actionlogin'])->name('actionlogin');
 
 Route::get('dashboard',[PembelianController::class,'dashboard'])->name('dashboard')->middleware('auth');

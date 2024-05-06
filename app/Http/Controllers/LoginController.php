@@ -10,6 +10,9 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
+    public function index(){
+        return view ('landing');
+    }
     public function login()
     {
         if (Auth::check()) {
