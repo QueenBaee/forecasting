@@ -39,13 +39,15 @@ class PembelianController extends Controller
             'nama' => 'required',
             'harga' => 'required',
             'bulan' =>'required',
+            'tahun' => 'required'
         ]);
 
 
         Pembelian::create([
-            'nama_bahanBaku' => $request->nama,
+            'id_bahan' => $request->nama,
             'harga'=> $request->harga,
             'bulan'=> $request->bulan,
+            'tahun' => $request->tahun
         ]);
     return redirect ('/dataPembelian');
     }
@@ -61,12 +63,14 @@ class PembelianController extends Controller
             'nama_bahanBaku' => 'required',
             'harga' => 'required',
             'bulan' =>'required',
+            'tahun'=>'required'
         ]);
 
         $beli = Pembelian::find($id);
         $beli -> nama_bahanBaku = $request ->nama_bahanBaku;
         $beli -> harga = $request -> harga;
         $beli -> bulan = $request->bulan;
+        $beli -> tahun = $request->tahun;
         //dd($beli);
         $beli->save();
         return redirect('/dataPembelian');

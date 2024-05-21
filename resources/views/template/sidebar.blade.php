@@ -13,7 +13,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="/">
+    <a class="nav-link" href="/dashboard">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -47,6 +47,19 @@
                         <a class="collapse-item" href="bahanBaku/create">Input Bahan Baku</a>
                     </div>
                 </div>
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Peramalan</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menu Peramalan</h6>
+                        <a class="collapse-item" href="/peramalan">Peramalan</a>
+                    </div>
+                </div>
+            </li>
             </li>
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">

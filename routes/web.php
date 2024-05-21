@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\bahanBakuController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PeramalanController;
 use App\Http\Controllers\Controller;
 use App\Models\bahanBaku;
 use App\Models\Pembelian;
@@ -31,3 +32,7 @@ Route::post('bahanBaku/simpan',[bahanBakuController::class,'store'])->name('baha
 Route::get('bahanBaku/edit/{id}',[bahanBakuController::class,'edit']);
 Route::put('bahanBaku/update/{id}',[bahanBakuController::class,'update'])->name('bahanBaku-update');
 Route::get('bahanBaku/delete/{id}',[bahanBakuController::class,'destroy'])->name('bahanBaku-delete');
+
+Route::get('peramalan',[PeramalanController::class,'index']);
+Route::get('peramalan/hitung/{id}',[PeramalanController::class, 'hitung'])->name('peramalan.hitung');
+// Route::get('peramalan/hasil',[PeramalanController::class, 'hasil'])->name('peramalan-hasil');

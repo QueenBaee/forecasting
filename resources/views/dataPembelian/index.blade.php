@@ -43,7 +43,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Harga</th>
-                    <th scope="col">Waktu Pembelian</th>
+                    <th scope="col">Bulan Pembelian</th>
+                    <th scope="col">Tahun Pembelian</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -51,9 +52,10 @@
                 @foreach ($beli as $bel)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $bel->nama_bahanBaku }}</td>
+                      <td>{{ $bel->bahanBaku->nama_bahanBaku }}</td>
                       <td width="10%">{{ 'Rp. ' .$bel->harga }}</td>
                       <td>{{ $bel->Bulan }}</td>
+                      <td>{{ $bel->tahun }}</td>
                       <td>
                           <a href="dataPembelian/edit/{{ $bel->id }}">Edit</a>
                           <a href="dataPembelian/delete/{{ $bel->id }}">Hapus</a>
